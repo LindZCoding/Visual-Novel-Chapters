@@ -44,7 +44,11 @@ Description:
 
 Wireframe:
 ![screensignup](https://user-images.githubusercontent.com/91760331/148575084-23f7ca8f-a8ed-4aaa-9db4-5837e7f147f9.png)
-
+![signupinfo](https://user-images.githubusercontent.com/91760331/148575132-0ec04c57-8cf6-4444-b13d-b9933f19670b.png)
+![loginpage](https://user-images.githubusercontent.com/91760331/148575209-bf4cb517-92d5-481a-bcaf-8429a2a9a2e5.png)
+![screen1](https://user-images.githubusercontent.com/91760331/148575339-fe37bb54-75cf-4902-8a48-99ac54ce6a2d.png)
+![screen2](https://user-images.githubusercontent.com/91760331/148575362-cd045945-19c5-49e8-8d73-fed24ab76bb2.png)
+![choicespage](https://user-images.githubusercontent.com/91760331/148575416-340359bb-c17c-4170-8e18-75f39719cc97.png)
 
 
 Plan: 
@@ -55,11 +59,7 @@ Plan:
 * This way I can connect certain dialogue lines to certain characters only
 
 ![ERDVN](https://user-images.githubusercontent.com/91760331/148574818-8983bd6f-b7e2-4755-b24e-e283089d84a5.png)
-![signupinfo](https://user-images.githubusercontent.com/91760331/148575132-0ec04c57-8cf6-4444-b13d-b9933f19670b.png)
-![loginpage](https://user-images.githubusercontent.com/91760331/148575209-bf4cb517-92d5-481a-bcaf-8429a2a9a2e5.png)
-![screen1](https://user-images.githubusercontent.com/91760331/148575339-fe37bb54-75cf-4902-8a48-99ac54ce6a2d.png)
-![screen2](https://user-images.githubusercontent.com/91760331/148575362-cd045945-19c5-49e8-8d73-fed24ab76bb2.png)
-![choicespage](https://user-images.githubusercontent.com/91760331/148575416-340359bb-c17c-4170-8e18-75f39719cc97.png)
+
 
 Nav Bar:
 * Can be accessed after creating an account or logging in
