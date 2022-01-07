@@ -40,7 +40,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 Visual Novel
 
 Description:
-* This visual novel will take the user through a story, but the choices the user makes throughout will affect what story the user gets. At the end of each chapter the user will be able to see their decision tree compared to the global decisions made by other users. 
+* This visual novel will take the user through a story, but the choices the user makes throughout will determine how the story plays out. At the end of each chapter the user will be able to see their decision tree compared to the global decisions made by other users. 
 
 Wireframe:
 ![screensignup](https://user-images.githubusercontent.com/91760331/148575084-23f7ca8f-a8ed-4aaa-9db4-5837e7f147f9.png)
