@@ -56,7 +56,8 @@ Plan:
 * I will be seeding my own data for the database to use
 * Each dialogue line will have their own ID
 * Each character will have their own ID
-* This way I can connect certain dialogue lines to certain characters only
+* Each user will have their own ID
+* This way I can connect certain dialogue lines to certain characters only and/or user
 
 ![ERDVN](https://user-images.githubusercontent.com/91760331/148574818-8983bd6f-b7e2-4755-b24e-e283089d84a5.png)
 
