@@ -59,7 +59,7 @@ Plan:
 * Each user will have their own ID (user model)
 * This way I can connect certain dialogue lines to certain characters only and/or user
 
-![ERDVN](https://user-images.githubusercontent.com/91760331/148574818-8983bd6f-b7e2-4755-b24e-e283089d84a5.png)
+![ERD](https://user-images.githubusercontent.com/91760331/148595447-c1a463a0-81ee-496e-bce8-f37aa5ba4146.png)
 
 
 Nav Bar:
