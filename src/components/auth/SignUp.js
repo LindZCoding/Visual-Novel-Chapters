@@ -21,6 +21,7 @@ const SignUp = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [name, setName] = useState('')
 
     const navigate = useNavigate()
 
@@ -29,7 +30,7 @@ const SignUp = (props) => {
 
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password, passwordConfirmation}
+        const credentials = {email, password, passwordConfirmation, name}
 
 		signUp(credentials)
 			.then(() => signIn(credentials))
@@ -46,6 +47,7 @@ const SignUp = (props) => {
                 setEmail('')
                 setPassword('')
                 setPasswordConfirmation('')
+                setName('')
 				msgAlert({
 					heading: 'Sign Up Failed with error: ' + error.message,
 					message: messages.signUpFailure,
@@ -69,6 +71,17 @@ const SignUp = (props) => {
                             value={email}
                             placeholder='Enter email'
                             onChange={e => setEmail(e.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId='name'>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            required
+                            type='name'
+                            name='name'
+                            value={name}
+                            placeholder='Enter name'
+                            onChange={e => setName(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
