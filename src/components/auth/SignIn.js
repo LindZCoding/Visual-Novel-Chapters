@@ -34,7 +34,10 @@ const SignIn = (props) => {
         const credentials = {email, password}
 
 		signIn(credentials)
-			.then((res) => setUser(res.data.user))
+			.then((res) => {
+                setUser(res.data.user)
+                console.log('user res', res)
+            })
 			.then(() =>
 				msgAlert({
 					heading: 'Sign In Success',

@@ -1,0 +1,42 @@
+
+  li:active {
+    background-color: pink;
+    transform: translateY(4px);
+  }
+
+  .navBar li:hover {
+    background-color: lightblue;
+  }
+
+  .navBar a:hover {
+    color: whitesmoke;
+  }
+
+  .navBar li > div {
+    height: 100%;
+  }
+
+  .navBar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #EFD3D7;
+  }
+
+  .navBar a {
+    color: #8E9AAF;
+    text-decoration: none;
+  }
+
+  .navBar li {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .links a {
+    margin: 10px;
+  }

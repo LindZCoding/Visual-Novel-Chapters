@@ -12,16 +12,36 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import apiUrl from './apiConfig'
+import FirstPage from './components/FirstPage'
+import axios from 'axios'
 
 const App = () => {
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
+  const [dialogues, setDialogues] = useState([])
+
+	// get all dialogue lines from database
+  const allDialogue = () => {
+	  console.log('user', user)
+	  if(!user) {
+		  return;
+	  } 
+	  axios.get(`${apiUrl}/dialogues`, {
+		  headers: {
+			  Authorization: `Bearer ${user.token}`,
+		  },
+	  })
+	  .then(resp => console.log('resp', resp.data))
+	  .catch(err => console.log(err))
+  }
+  allDialogue()
 
   console.log('user in app', user)
-  console.log('message alerts', msgAlerts)
+//   console.log('message alerts', msgAlerts)
   const clearUser = () => {
-    console.log('clear user ran')
+    // console.log('clear user ran')
     setUser(null)
   }
 
@@ -45,6 +65,7 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path="/story" element={<FirstPage />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

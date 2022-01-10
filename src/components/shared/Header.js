@@ -1,65 +1,119 @@
-import React, { Fragment } from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
+// import React, { Fragment } from 'react'
+// import Nav from 'react-bootstrap/Nav'
+// import Navbar from 'react-bootstrap/Navbar'
+// import { Link } from 'react-router-dom'
+// import '../../Header.css'
+
+// // const linkStyle = {
+// //     color: 'white',
+// //     textDecoration: 'none'
+// // }
+
+// const authenticatedOptions = (
+// 	<>
+// 		<Nav.Link className='navBar'>
+// 			<ul>
+// 				<li>
+// 					<Link to='change-password'>
+// 						Change Password
+// 					</Link>
+// 				</li>
+// 			</ul>
+// 		</Nav.Link>
+// 		<Nav.Link>
+// 			<Link to='sign-out'>
+// 				Sign Out
+// 			</Link>
+// 		</Nav.Link>
+// 	</>
+// )
+
+// const unauthenticatedOptions = (
+// 	<>
+// 		<Nav.Link className='navBar'>
+// 			<ul>
+// 				<li>
+// 					<Link to='sign-up'>Sign Up</Link>
+// 				</li>
+// 			</ul>
+// 		</Nav.Link>
+// 		<Nav.Link>
+// 			<ul>
+// 				<li>
+// 			<Link to='sign-in'>Sign In</Link>
+// 			</li>
+// 			</ul>
+// 		</Nav.Link>
+// 	</>
+// )
+
+// const alwaysOptions = (
+// 	<>
+// 		<Nav.Link className='navBar'>
+// 			<ul>
+// 				<li>
+// 			<Link to='/'>
+// 				Home
+// 			</Link>
+// 			</li>
+// 			</ul>
+// 		</Nav.Link>
+// 	</>
+// )
+
+// const Header = ({ user }) => (
+// 	<Navbar className='navBar'>
+// 		{/* <Navbar.Toggle aria-controls='basic-navbar-nav' /> */}
+// 		<Nav>
+// 			{user && (
+// 				<span>Welcome!</span>
+// 			)}
+// 			{alwaysOptions}
+// 			{user ? authenticatedOptions : unauthenticatedOptions}
+// 		</Nav>
+// 	</Navbar>
+// )
+
+// export default Header
+
+import React from "react";
 import { Link } from 'react-router-dom'
-const linkStyle = {
-    color: 'white',
-    textDecoration: 'none'
+import "../../Header.css"
+
+const Header = () => {
+
+	const homeNav = (
+		<div className="navBar">
+			<ul>
+				<li className="links">
+					<div>
+						<Link to="/">Home</Link>
+					</div>
+				</li>
+				<li>
+					<div>
+						<Link to="/sign-in">Sign-in</Link>
+					</div>
+				</li>
+				<li>
+					<div>
+						<Link to="/sign-up">Sign-up</Link>
+					</div>
+				</li>
+				<li>
+					<div>
+						<Link to="/sign-out">Sign-out</Link>
+					</div>
+				</li>
+			</ul>
+		</div>
+	)
+
+	return (
+		<div>
+			{homeNav}
+		</div>
+	)
 }
-const authenticatedOptions = (
-	<>
-		<Nav.Link>
-			<Link to='change-password' style={linkStyle}>
-				Change Password
-			</Link>
-		</Nav.Link>
-		<Nav.Link>
-			<Link to='sign-out' style={linkStyle}>
-				Sign Out
-			</Link>
-		</Nav.Link>
-	</>
-)
 
-const unauthenticatedOptions = (
-	<>
-        <Nav.Link>
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Link>
-        <Nav.Link>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Link>
-	</>
-)
-
-const alwaysOptions = (
-	<>
-		<Nav.Link>
-			<Link to='/' style={linkStyle}>
-				Home
-			</Link>
-		</Nav.Link>
-	</>
-)
-
-const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand>
-            <Link to='/' style={linkStyle}>
-                react-auth-template
-            </Link>
-        </Navbar.Brand>
-		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
-				)}
-				{alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions}
-			</Nav>
-		</Navbar.Collapse>
-	</Navbar>
-)
-
-export default Header
+export default Header;

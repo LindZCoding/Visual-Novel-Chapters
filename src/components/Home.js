@@ -1,12 +1,23 @@
-const Home = (props) => {
-	// const { msgAlert, user } = props
-	console.log('props in home', props)
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import "../Home.css"
 
-	return (
-		<>
-			<h2>Home Page</h2>
-		</>
-	)
+const Home = () => {
+
+    const startButton = () => {
+
+    }
+
+    return (
+        <div className='home-page'>
+        <div className='title'>
+        <h1>Welcome to the world of this visual novel or is this a dating sim?</h1>
+        </div>
+        <Link to='/story'>
+        <button className='start-button' onClick={startButton}>Start your journey</button>
+        </Link>
+        </div>
+    )
 }
 
-export default Home
+export default Home;
