@@ -2,6 +2,7 @@
 import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import { useEffect } from 'react'
 
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
@@ -23,8 +24,7 @@ const App = () => {
   const [dialogues, setDialogues] = useState([])
 
 	// get all dialogue lines from database
-  const allDialogue = () => {
-	  console.log('user', user)
+  useEffect(() => {
 	  if(!user) {
 		  return;
 	  } 
@@ -33,12 +33,14 @@ const App = () => {
 			  Authorization: `Bearer ${user.token}`,
 		  },
 	  })
-	  .then(resp => console.log('resp', resp.data))
+	  .then((resp) => {
+		  console.log('resp for getting dialogues', resp.data)
+		  setDialogues(resp.data)
+	  })
 	  .catch(err => console.log(err))
-  }
-  allDialogue()
+  }, [user])
 
-  console.log('user in app', user)
+//   console.log('user in app', user)
 //   console.log('message alerts', msgAlerts)
   const clearUser = () => {
     // console.log('clear user ran')
@@ -65,7 +67,7 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route path="/story" element={<FirstPage />} />
+					<Route path="/story" element={<FirstPage dialogues={dialogues} user={user} />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

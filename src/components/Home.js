@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import "../Home.css"
 
-const Home = () => {
+const Home = (props) => {
 
-    const startButton = () => {
-
-    }
 
     return (
         <div className='home-page'>
@@ -14,7 +11,7 @@ const Home = () => {
         <h1>Welcome to the world of this visual novel or is this a dating sim?</h1>
         </div>
         <Link to='/story'>
-        <button className='start-button' onClick={startButton}>Start your journey</button>
+        <button className='start-button'>Start your journey</button>
         </Link>
         </div>
     )
