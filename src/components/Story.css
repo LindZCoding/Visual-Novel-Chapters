@@ -1,12 +1,12 @@
 .text {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: whitesmoke;
-    background-color: rgba(8, 2, 2, 0.424);
+    background-color: rgba(8, 2, 2, 0.719);
     padding: 5px;
-    width: 65%;
+    width: 42%;
     text-align: center;
 }
 
@@ -53,3 +53,32 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.yes-button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;   
+    color: yellow;  
+}
+
+.no-button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;   
+    color: yellow;
+}
+
+.character {
+    position: absolute;
+    display: flex;
+    width: 50%;
+    height: 45%;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5%;
+}
+
