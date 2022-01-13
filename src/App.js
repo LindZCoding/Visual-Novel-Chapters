@@ -29,14 +29,14 @@ const App = () => {
 	  if(!user) {
 		  return;
 	  } 
-	  axios.get(`${apiUrl}/dialogues/${currentChapter}`, {
+	  axios.get(`${apiUrl}/story/${currentChapter}`, {
 		  headers: {
 			  Authorization: `Bearer ${user.token}`,
 		  },
 	  })
 	  .then((resp) => {
-		  console.log('resp for getting dialogues', resp.data.dialogue.story[0].dialogues)
-		  setDialogues(resp.data.dialogue.story[0].dialogues)
+		  console.log('resp for getting dialogues', resp.data.story.dialogues)
+		  setDialogues(resp.data.story.dialogues)
 	  })
 	  .catch(err => console.log(err))
   }, [user])
@@ -68,7 +68,7 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route path="/story" element={<FirstPage dialogues={dialogues} user={user} currentChapter={currentChapter} setCurrentChapter={setCurrentChapter} />} />
+					<Route path="/story" element={<FirstPage dialogues={dialogues} user={user} setDialogues={setDialogues} currentChapter={currentChapter} setCurrentChapter={setCurrentChapter} />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}

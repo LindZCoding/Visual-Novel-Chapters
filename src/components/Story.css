@@ -1,63 +1,59 @@
-/* .dialogues {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: whitesmoke;
-    background-color: rgba(8, 2, 2, 0.719);
-    padding: 5px;
-    width: 42%;
-    text-align: center;
+.choice-one, .choice-two {
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
 
-
-body {
-    background-color: #DEE2FF;
+.choice-one:hover, .choice-two:hover {
+    background-color: pink;
+    color: white;
 }
 
-/* .background {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 5%;
-} */
-
-.character {
+.character-img {
     position: absolute;
-    display: flex;
-    width: 50%;
-    height: 45%;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 6%;
+    width: 325px;
+    height: 500px;
+    top: 10%;
+    left: 40%;
 } 
 
 .story {
     position: relative;
     text-align: center;
-    color: white;
+}
+
+.background-img {
+    border-radius: 7px;
+    border-color: black;
+    margin-top: 10%;
+    width: 900px;
+    height: 500px;
 }
 
 
-/* .dialogues {
+.dialogues {
     position: absolute;
-    top: 50%;
+    top: 92%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: black;
-  } */
+    background-color: rgba(255, 255, 255, 0.609);
+    width: 850px;
+    height: 100px;
+    text-align: center;
+  }
 
-/* .button-choice {
-    position: absolute;
-    top: 53%;
-    left: 50%;
-    background-color: black;
-  } */
+  .dialogue-text {
+      color: black;
+  }
 
-.background {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 5%;
-}
+/* .choices {
+    color: black;
+} */
+
+
 

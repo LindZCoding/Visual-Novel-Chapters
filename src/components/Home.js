@@ -8,11 +8,14 @@ const Home = (props) => {
     return (
         <div className='home-page'>
         <div className='title'>
-        <h1>Welcome to the world of this visual novel or is this a dating sim?</h1>
+        <h1>The choices you make throughout the story will determine how the story plays out.</h1>
         </div>
         <Link to='/story'>
         <button className='start-button'>Start your journey</button>
         </Link>
+        <div>
+            <img className="tahnya-img" src='https://i.imgur.com/1ZPrwam.png' alt="tahnya-image" />
+            </div>
         </div>
     )
 }
