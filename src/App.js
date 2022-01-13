@@ -22,20 +22,21 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
   const [dialogues, setDialogues] = useState([])
+  const [currentChapter, setCurrentChapter] = useState(1)
 
 	// get all dialogue lines from database
   useEffect(() => {
 	  if(!user) {
 		  return;
 	  } 
-	  axios.get(`${apiUrl}/dialogues`, {
+	  axios.get(`${apiUrl}/dialogues/${currentChapter}`, {
 		  headers: {
 			  Authorization: `Bearer ${user.token}`,
 		  },
 	  })
 	  .then((resp) => {
-		  console.log('resp for getting dialogues', resp.data)
-		  setDialogues(resp.data)
+		  console.log('resp for getting dialogues', resp.data.dialogue.story[0].dialogues)
+		  setDialogues(resp.data.dialogue.story[0].dialogues)
 	  })
 	  .catch(err => console.log(err))
   }, [user])
@@ -67,7 +68,7 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route path="/story" element={<FirstPage dialogues={dialogues} user={user} />} />
+					<Route path="/story" element={<FirstPage dialogues={dialogues} user={user} currentChapter={currentChapter} setCurrentChapter={setCurrentChapter} />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
