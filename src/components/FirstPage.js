@@ -4,7 +4,6 @@ import './Story.css'
 import axios from "axios";
 import { useEffect } from "react";
 import apiUrl from '../apiConfig'
-import { set } from "mongoose";
 
 
 // const FirstPage = (props) => {
@@ -164,7 +163,7 @@ const FirstPage = (props) => {
 
                 if (pd[index].background !== null) {
 
-                    setCurrentBackground(pd[index].chapterOne[0].background)
+                    setCurrentBackground(pd[index].background)
                 }
             }
         }
@@ -176,7 +175,6 @@ const FirstPage = (props) => {
 
     const plusButton = () => {
         if (props.dialogues[currentLine].choices[0]) {
-            console.log('plus but')
             setCurrentWeight(currentWeight + props.dialogues[currentLine].weight)
             setPausedForChoice(false)
         }
@@ -184,25 +182,28 @@ const FirstPage = (props) => {
 
     const minusButton = () => {
         if (props.dialogues[currentLine].choices[0]) {
-            console.log('minus but')
             setCurrentWeight(currentWeight - props.dialogues[currentLine].weight)
             setPausedForChoice(false)
         }
     }
 
     return (
-        <div onClick={continueButton}>
+        <div classname="story" onClick={continueButton}>
             <div className="dialogues">
-                {props.dialogues[currentLine].dialogueLine}
-            </div>
-            {
-                (props.dialogues[currentLine].choices[0]) &&
-                < div className="choices">
-                    <button onClick={plusButton}>{props.dialogues[currentLine].choices[0]}</button>
-                    <button onClick={minusButton}>{props.dialogues[currentLine].choices[1]}</button>
+                <div className="button-text">
+                    {props.dialogues[currentLine].dialogueLine}
                 </div>
-
-            }
+                <div className="button-choice">
+                    {
+                        (props.dialogues[currentLine].choices[0]) &&
+                        <div className="choices">
+                            <button classname="choiceButtonOne" onClick={plusButton}>{props.dialogues[currentLine].choices[0]}</button>
+                            <br></br>
+                            <button onClick={minusButton}>{props.dialogues[currentLine].choices[1]}</button>
+                        </div>
+                    }
+                </div>
+            </div>
             <div className="character">
                 <img className="character-img" src={props.dialogues[currentLine].characterUrl} alt="character-image" />
             </div>
