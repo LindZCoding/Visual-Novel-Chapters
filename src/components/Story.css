@@ -14,14 +14,6 @@
     color: white;
 }
 
-.character-img {
-    position: absolute;
-    width: 325px;
-    height: 500px;
-    top: 10%;
-    left: 40%;
-} 
-
 .story {
     position: relative;
     text-align: center;
@@ -50,6 +42,15 @@
   .dialogue-text {
       color: black;
   }
+
+  .character-image {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 375px;
+    height: 525px;
+    text-align: center;
+}
 
 /* .choices {
     color: black;

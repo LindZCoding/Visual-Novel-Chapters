@@ -14,42 +14,36 @@ const FirstPage = (props) => {
     const [currentChapter, setCurrentChapter] = useState(props.currentChapter)
 
     const nextStory = () => {
-        axios.get(`${apiUrl}/story/${currentChapter}`, {
-            headers: {
-                Authorization: `Bearer ${props.user.token}`,
-            },
-        })
-        .then((resp) => {
-            console.log('resp for getting dialogues FP', resp.data.story.dialogues)
-            props.setDialogues(resp.data.story.dialogues)
-            setCurrentWeight(0)
-        })
-        .catch(err => console.log(err))
+
+        let nextChapter
+        let threshold = 10
+
+        
+            if (currentWeight >= threshold) {
+                nextChapter = `${currentChapter+1}a`
+            } else {
+                nextChapter = `${currentChapter+1}b`
+            }
+            axios.get(`${apiUrl}/story/${nextChapter}`, {
+                headers: {
+                    Authorization: `Bearer ${props.user.token}`,
+                },
+            })
+            .then((resp) => {
+                console.log('resp for getting dialogues FP', resp.data.story.dialogues)
+                props.setDialogues(resp.data.story.dialogues)
+                setCurrentWeight(0)
+            })
+            .catch(err => console.log(err))
+
     }
+
+
+   
 
 const continueButton = () => {
 
-// let nextChapter
-// if (weight<=threshold) {
-//  nextChapter = `${currentChapter+1}a`
-// } else {
-//   nextChapter = `${currentChapter+1}b`
-// }
-// go into db and retrieve chapter where title = nextChapter
-
-
-    if (currentLine === 3 && currentWeight >= 10) {
-        console.log('you hit CL3(4)', `${currentChapter+1}a`)
-        setCurrentChapter(`${currentChapter+1}a`)
-    }
-
-    if (currentLine === 3 && currentWeight <= 9) {
-        console.log('you hit CL3(4)', `${currentChapter+1}b`)
-        setCurrentChapter(`${currentChapter+1}b`)
-    }
-
-    if (currentChapter === '2a' || currentChapter === '2b') {
-        // console.log('2a has been hit')
+    if (currentLine >= props.dialogues.length - 1) {
         nextStory()
     }
 
@@ -78,10 +72,10 @@ const continueButton = () => {
         }
     }
 
-    // if (pd[index].chapterOne[0].choices === null) {
-    //     setCurrentChoice(null)
-    // }
+
+
 }
+
 
 const plusButton = () => {
     if (props.dialogues[currentLine].choices[0]) {
@@ -114,8 +108,8 @@ return (
                 }
             </div>
         </div>
-        <div className="character">
-            <img className="character-img" src={props.dialogues[currentLine].characterUrl} alt="character-image" />
+        <div className="characters">
+            <img className="character-image" src={props.dialogues[currentLine].characterUrl} alt="character-image" />
         </div>
         <div className="background">
             <img className="background-img" src={props.dialogues[currentLine].background} alt="background-image" />

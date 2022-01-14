@@ -80,14 +80,18 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import "../../Header.css"
 
-const Header = () => {
+const Header = (props) => {
+
+	if (!props.user) {
+		return '';
+	}
 
 	const homeNav = (
 		<div className="navBar">
 			<ul>
 				<li className="links">
 					<div>
-						<Link to="/">Home</Link>
+						<Link to="/">Welcome, {props.user.name}</Link>
 					</div>
 				</li>
 				<li>
