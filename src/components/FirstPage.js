@@ -12,110 +12,139 @@ const FirstPage = (props) => {
     const [currentBackground, setCurrentBackground] = useState(props.dialogues[currentLine].background)
     const [pausedForChoice, setPausedForChoice] = useState(false)
     const [currentChapter, setCurrentChapter] = useState(props.currentChapter)
+    const [currentResults, setCurrentResults] = useState([])
+    const [currentQuestion, setCurrentQuestion] = useState([])
 
     const nextStory = () => {
 
         let nextChapter
         let threshold = 10
 
-        
-            if (currentWeight >= threshold) {
-                nextChapter = `${currentChapter+1}a`
-            } else {
-                nextChapter = `${currentChapter+1}b`
-            }
-            axios.get(`${apiUrl}/story/${nextChapter}`, {
-                headers: {
-                    Authorization: `Bearer ${props.user.token}`,
-                },
-            })
+        if (currentWeight >= threshold) {
+            nextChapter = `${currentChapter + 1}a`
+        } else {
+            nextChapter = `${currentChapter + 1}b`
+        }
+        axios.get(`${apiUrl}/story/${nextChapter}`, {
+            headers: {
+                Authorization: `Bearer ${props.user.token}`,
+            },
+        })
             .then((resp) => {
                 console.log('resp for getting dialogues FP', resp.data.story.dialogues)
                 props.setDialogues(resp.data.story.dialogues)
                 setCurrentWeight(0)
+                setCurrentResults([])
+                setCurrentQuestion([])
             })
             .catch(err => console.log(err))
-
     }
 
+    const continueButton = () => {
 
-   
+        if (currentLine >= props.dialogues.length - 1) {
+            nextStory()
+        }
 
-const continueButton = () => {
+        if (!pausedForChoice) {
 
-    if (currentLine >= props.dialogues.length - 1) {
-        nextStory()
-    }
+            let pd = props.dialogues
+            let index = currentLine + 2 > pd.length ? 0 : currentLine + 1
 
-    if (!pausedForChoice) {
+            setCurrentLine(index)
 
-        let pd = props.dialogues
-        let index = currentLine + 2 > pd.length ? 0 : currentLine + 1
-
-        setCurrentLine(index)
-
-        if (props.dialogues[index].choices[0]) {
-            setPausedForChoice(true)
-            return;
-        } else {
-            setPausedForChoice(false)
-
-
-            if (!pd[index].dialogueLine) {
+            if (props.dialogues[index].choices[0]) {
+                setPausedForChoice(true)
                 return;
-            }
+            } else {
+                setPausedForChoice(false)
 
-            if (pd[index].background !== null) {
+                if (!pd[index].dialogueLine) {
+                    return;
+                }
 
-                setCurrentBackground(pd[index].background)
+                if (pd[index].background !== null) {
+
+                    setCurrentBackground(pd[index].background)
+                }
             }
         }
     }
 
 
-
-}
-
-
-const plusButton = () => {
-    if (props.dialogues[currentLine].choices[0]) {
-        setCurrentWeight(currentWeight + props.dialogues[currentLine].weight)
-        setPausedForChoice(false)
+    const plusButton = () => {
+        if (props.dialogues[currentLine].choices[0]) {
+            setCurrentWeight(currentWeight + props.dialogues[currentLine].weight)
+            setPausedForChoice(false)
+        }
     }
-}
 
-const minusButton = () => {
-    if (props.dialogues[currentLine].choices[0]) {
-        setCurrentWeight(currentWeight - props.dialogues[currentLine].weight)
-        setPausedForChoice(false)
+    const minusButton = () => {
+        if (props.dialogues[currentLine].choices[0]) {
+            setCurrentWeight(currentWeight - props.dialogues[currentLine].weight)
+            setPausedForChoice(false)
+            currentResults.push(props.dialogues[currentLine].choices[0])
+            currentQuestion.push(props.dialogues[currentLine].dialogueLine)
+        }
     }
-}
 
-return (
-    <div className="story" onClick={continueButton}>
-        <div className="dialogues">
-            <div className="dialogue-text">
-                {props.dialogues[currentLine].dialogueLine}
+    const mapQuestions = currentQuestion.map(question => {
+        return (
+            <div>
+                <ul><li>{question}</li></ul>
             </div>
-            <div className="button-choices">
+        )
+    })
+
+    const mapResults = currentResults.map(result => {
+        return (
+            <div>
+                <ul><li>{result}</li></ul>
+            </div>
+        )
+    })
+
+    return (
+        <div className="story" onClick={continueButton}>
+            <div className="dialogues">
+                <div className="dialogue-text">
+                    {props.dialogues[currentLine].dialogueLine}
+                </div>
+                <div className="button-choices">
+                    {
+                        (props.dialogues[currentLine].choices[0]) &&
+                        <div className="choices">
+                            <button className="choice-one" onClick={plusButton}>{props.dialogues[currentLine].choices[0]}</button>
+                            <br></br>
+                            <button className="choice-two" onClick={minusButton}>{props.dialogues[currentLine].choices[1]}</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div className="questions">
                 {
-                    (props.dialogues[currentLine].choices[0]) &&
-                    <div className="choices">
-                        <button className="choice-one" onClick={plusButton}>{props.dialogues[currentLine].choices[0]}</button>
-                        <br></br>
-                        <button className="choice-two" onClick={minusButton}>{props.dialogues[currentLine].choices[1]}</button>
+                    (currentLine >= props.dialogues.length - 1) &&
+                    <div className="all-questions">
+                        {mapQuestions}
                     </div>
                 }
             </div>
-        </div>
-        <div className="characters">
-            <img className="character-image" src={props.dialogues[currentLine].characterUrl} alt="character-image" />
-        </div>
-        <div className="background">
-            <img className="background-img" src={props.dialogues[currentLine].background} alt="background-image" />
-        </div>
-    </div >
-)
+            <div className="results">
+                {
+                    (currentLine >= props.dialogues.length - 1) &&
+                    <div className="all-results">
+                        {mapResults}
+                    </div>
+                }
+            </div>
+            <div className="characters">
+                <img className="character-image" src={props.dialogues[currentLine].characterUrl} alt="character-image" />
+            </div>
+            <div className="background">
+                <img className="background-img" src={props.dialogues[currentLine].background} alt="background-image" />
+            </div>
+        </div >
+    )
 
 }
 
